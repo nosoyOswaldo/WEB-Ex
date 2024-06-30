@@ -147,26 +147,26 @@ function optionSelected(answer){
     next_btn.classList.add("show"); //show the next button if user selected any option
 }
 
-function showResult(){
-    info_box.classList.remove("activeInfo"); //hide info box
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
+function showResult() {
+    info_box.classList.remove("activeInfo");
+    quiz_box.classList.remove("activeQuiz"); 
+    result_box.classList.add("activeResult");
     const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 3){ // if user scored more than 3
-        //creating a new span tag and passing the user score number and total question number
-        let scoreTag = '<span> y  Felicidades! 🎉, Tienes <p>'+ userScore +'</p> de <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else if(userScore > 1){ // if user scored more than 1
-        let scoreTag = '<span> y  Muy bueno 😎, Tienes <p>'+ userScore +'</p> de  <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-    else{ // if user scored less than 1
-        let scoreTag = '<span> y Fallaste 😐, Tienes  <p>'+ userScore +'</p> de  <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-}
+    let scoreTag;
 
+    if(userScore === 10){
+        scoreTag = '<span> y  Felicidades calificación perfecta! 🎉 🎉 🎉, Tienes <p>' + userScore + '</p> de <p>' + questions.length + '</p></span>';
+    } else if (userScore >= 8) { 
+        scoreTag = '<span> y  Felicidades! 😎, Tienes <p>' + userScore + '</p> de <p>' + questions.length + '</p></span>';
+    } else if (userScore >= 5) { 
+            scoreTag = '<span> Que bien 😎, Tienes <p>' + userScore + '</p> de <p>' + questions.length + '</p></span>';
+    } else if (userScore >= 2) {
+        scoreTag = '<span> y  Hay que estudiar 😓, Tienes <p>' + userScore + '</p> de <p>' + questions.length + '</p></span>';
+    } else { 
+        scoreTag = '<span> y Fallaste 😐, Tienes <p>' + userScore + '</p> de <p>' + questions.length + '</p></span>';
+    }
+    scoreText.innerHTML = scoreTag; 
+}
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
